@@ -17,7 +17,7 @@ import Text from './Typography/Text';
 import TouchableRipple from './TouchableRipple';
 import { withTheme } from '../core/theming';
 import { black, white } from '../styles/colors';
-import { Theme } from '../types';
+import { Theme, EllipsizeProp } from '../types';
 
 type Props = React.ComponentProps<typeof Surface> & {
   /**
@@ -80,6 +80,10 @@ type Props = React.ComponentProps<typeof Surface> & {
    * Pass down testID from chip props to touchable for Detox tests.
    */
   testID?: string;
+  /**
+   * Ellipsize Mode for the children text
+   */
+  ellipsizeMode?: EllipsizeProp;
 };
 
 type State = {
@@ -158,6 +162,7 @@ class Chip extends React.Component<Props, State> {
       theme,
       testID,
       selectedColor,
+      ellipsizeMode,
       ...rest
     } = this.props;
     const { dark, colors } = theme;
@@ -296,6 +301,7 @@ class Chip extends React.Component<Props, State> {
                 },
                 textStyle,
               ]}
+              ellipsizeMode={ellipsizeMode}
             >
               {children}
             </Text>
